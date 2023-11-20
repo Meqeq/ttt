@@ -1,0 +1,19 @@
+<div class="flex h-16 flex-col justify-center">
+  <button
+    mat-raised-button
+    color="primary"
+    class="w-56 p-4"
+    [disabled]="loading"
+  >
+    <label for="file-input" class="w-full block cursor-pointer p-4">
+      {{ loading ? "Loading" : "Load event log" }}
+    </label>
+  </button>
+</div>
+
+<input
+  id="file-input"
+  class="sr-only"
+  type="file"
+  (change)="onFileInput($event)"
+/>

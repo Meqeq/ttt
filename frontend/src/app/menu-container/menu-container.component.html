@@ -1,0 +1,16 @@
+<div
+  class="bg-white absolute shadow-lg p-4 w-full transition-all top-0 left-0"
+  [class.-top-24]="!open"
+>
+  <div class="h-20">
+    <ng-content select="[top-menu]"> </ng-content>
+  </div>
+  <div class="h-28 mt-4">
+    <ng-content select="[bottom-menu]"> </ng-content>
+  </div>
+
+  <!--div
+    class="h-12 w-12 bg-green-400 pointer rounded-full absolute right-4"
+    (click)="open = !open"
+  ></div-->
+</div>

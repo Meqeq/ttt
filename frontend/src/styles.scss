@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.node-label {
+  font-size: 0.25rem;
+  display: none;
+  height: 2rem;
+
+  background-color: red !important;
+}
+
+.edge-label {
+  font-size: 0.25rem;
+  display: none;
+}
+
+.duration-label {
+  font-size: 0.25rem;
+  display: none;
+}
+
+.node-labels-visible {
+  .node-label {
+    display: block;
+  }
+}
+
+.edge-labels-visible {
+  .edge-label {
+    display: block;
+  }
+}
+
+.edge-duration-labels-visible {
+  .duration-label {
+    display: block;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mdc-evolution-chip__text-label {
+  border: 0 !important;
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--selected)
+  .mdc-evolution-chip__action--primary::before {
+  border: 0 !important;
+}
+
+.lel {
+  border-radius: 3px;
+}

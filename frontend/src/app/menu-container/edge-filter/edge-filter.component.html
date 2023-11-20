@@ -1,0 +1,7 @@
+<p class="px-2 font-bold">Edge filter</p>
+<div *ngIf="form.value.maxEdge" class="flex px-2 p-1" [formGroup]="form">
+  <mat-slider min="0" [max]="max" showTickMarks discrete>
+    <input matSliderStartThumb formControlName="minEdge" />
+    <input matSliderEndThumb formControlName="maxEdge" />
+  </mat-slider>
+</div>

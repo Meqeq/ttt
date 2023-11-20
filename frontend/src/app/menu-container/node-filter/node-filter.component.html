@@ -1,0 +1,7 @@
+<p class="px-2 font-bold">Node filter</p>
+<div *ngIf="form.value.maxNode" class="flex px-2 p-1" [formGroup]="form">
+  <mat-slider min="0" [max]="max" showTickMarks discrete>
+    <input matSliderStartThumb formControlName="minNode" />
+    <input matSliderEndThumb formControlName="maxNode" />
+  </mat-slider>
+</div>

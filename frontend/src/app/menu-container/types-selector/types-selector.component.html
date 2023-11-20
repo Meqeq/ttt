@@ -1,0 +1,15 @@
+<div class="h-20">
+  <p class="font-bold">Object types</p>
+  <div class="flex flex-wrap">
+    <mat-chip-option
+      *ngFor="let type of types; let index = index"
+      [style.background-color]="
+        type[1] ? (type[0] | valueFromMap: colorsMap) : '#c3c3c3'
+      "
+      (click)="onTypeChange(index)"
+      class="m-1 px-1"
+      [selectable]="false"
+      >{{ type[0] }}</mat-chip-option
+    >
+  </div>
+</div>

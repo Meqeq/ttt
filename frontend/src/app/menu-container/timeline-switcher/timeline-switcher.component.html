@@ -1,0 +1,9 @@
+<p class="px-2 font-bold">Variant</p>
+<div class="flex px-2 p-1">
+  <mat-slide-toggle
+    (change)="
+      timelineModeChange.emit(timelineMode === 'single' ? 'multi' : 'single')
+    "
+    >{{ timelineMode | uppercase }}</mat-slide-toggle
+  >
+</div>

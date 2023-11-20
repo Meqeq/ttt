@@ -1,0 +1,95 @@
+<div
+  [class.node-labels-visible]="showNodeLabels"
+  [class.edge-labels-visible]="showEdgeLabels"
+  [class.edge-duration-labels-visible]="showDurationLabels"
+>
+  <div class="w-screen h-screen bg-gray-100" #graphContainer></div>
+  <div
+    *ngIf="mode === Mode.Timesheet && types.length && showTimesheet"
+    class="absolute top-0 left-0 h-screen w-screen pt-60 overflow-auto"
+  >
+    <app-timesheet-canvas
+      [mode]="timelineMode"
+      [graph]="graph"
+      [colorsMap]="colorsMap"
+    >
+    </app-timesheet-canvas>
+  </div>
+  <app-menu-container class="block">
+    <ng-container top-menu>
+      <div class="flex">
+        <app-log-loader (logChange)="setGraph()"></app-log-loader>
+        <div class="px-4">
+          <app-objects-selector
+            *ngIf="mode !== Mode.Multi"
+            [objects]="objects"
+            [colorsMap]="colorsMap"
+            (objectChange)="onObjectChange($event)"
+          ></app-objects-selector>
+        </div>
+        <app-node-filter
+          *ngIf="mode === Mode.Multi"
+          [form]="filter"
+          [max]="filterMax[0]"
+        ></app-node-filter>
+        <app-edge-filter
+          *ngIf="mode === Mode.Multi"
+          [form]="filter"
+          [max]="filterMax[1]"
+        ></app-edge-filter>
+      </div>
+    </ng-container>
+
+    <ng-container bottom-menu>
+      <div class="flex">
+        <app-mode-switcher
+          [types]="types"
+          [(mode)]="mode"
+          (modeChange)="onModeChange()"
+          [(swimlaneType)]="swimlaneType"
+          (swimlaneTypeChange)="onModeChange()"
+        ></app-mode-switcher>
+
+        <div class="px-4">
+          <app-types-selector
+            [types]="types"
+            [colorsMap]="colorsMap"
+            (typeChange)="onTypeChange($event)"
+          >
+          </app-types-selector>
+        </div>
+
+        <app-labels-selector
+          [mode]="mode"
+          [(showNodeLabels)]="showNodeLabels"
+          [(showEdgeLabels)]="showEdgeLabels"
+          [(showDurationLabels)]="showDurationLabels"
+          (showNodeLabelsChange)="onShowNode()"
+          (showDurationLabelsChange)="onShowNode()"
+        >
+        </app-labels-selector>
+
+        <app-limiter
+          *ngIf="mode === Mode.Single || mode === Mode.Swimlane"
+          [limit]="limit"
+        ></app-limiter>
+
+        <app-layout-switcher
+          *ngIf="
+            mode === Mode.Multi ||
+            mode === Mode.Single ||
+            mode === Mode.Swimlane
+          "
+          [(layout)]="layout"
+          (layoutChange)="setGraph()"
+        ></app-layout-switcher>
+
+        <app-timeline-switcher
+          *ngIf="mode === Mode.Timesheet"
+          [(timelineMode)]="timelineMode"
+          (timelineModeChange)="setGraph()"
+        ></app-timeline-switcher>
+      </div>
+    </ng-container>
+  </app-menu-container>
+</div>

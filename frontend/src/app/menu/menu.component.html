@@ -1,0 +1,101 @@
+<div class="w-full fixed top-0 z-20 bg-white p-4">
+  <div class="flex">
+    <div class="w-40 mr-2">
+      <button class="bg-red-500 p-2" [class.!bg-gray-500]="loading">
+        <label for="file-input" class="w-full block cursor-pointer p-4">
+          {{ loading ? "Ładowanie" : "Wybierz dziennik zdarzeń" }}
+        </label>
+      </button>
+
+      <input
+        id="file-input"
+        class="sr-only"
+        type="file"
+        (change)="onFileInput($event)"
+      />
+
+      <button class="bg-red-500 mt-2 w-full" (click)="onModeChange()">
+        {{ mode }}
+      </button>
+    </div>
+    <div *ngIf="mode !== Mode.Multi" class="w-3/6 p-2">
+      <p>Obiekty</p>
+      <div class="flex flex-wrap h-28 overflow-auto">
+        <div
+          *ngFor="let obj of objects; let index = index"
+          class="p-2 m-1 bg-gray-400 flex-1 cursor-pointer"
+          [style.background-color]="
+            obj[2] ? (obj[1] | valueFromMap: colorsMap) : '#c3c3c3'
+          "
+          (click)="onObjectChange(index)"
+        >
+          {{ obj[0] }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-3/6 border-l-2 border-gray-600 p-2 flex-1 height-16 overflow-auto"
+    >
+      <p>Typy obiektów</p>
+      <div class="flex flex-wrap">
+        <div
+          *ngFor="let type of types; let index = index"
+          class="p-2 m-1 bg-gray-400 flex-1 cursor-pointer"
+          [style.background-color]="
+            type[1] ? (type[0] | valueFromMap: colorsMap) : '#c3c3c3'
+          "
+          (click)="onTypeChange(index)"
+        >
+          {{ type[0] }}
+        </div>
+      </div>
+      <div *ngIf="mode === Mode.Swimlane" class="m-1 flex">
+        <span>Swimlane type: </span>
+        <select class="m-1 p-2" (change)="onSwimlaneTypeChange($event)">
+          <option
+            *ngFor="let type of types; let index = index"
+            [value]="type[0]"
+          >
+            {{ type[0] }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex">
+        <div class="p-2">
+          <label>
+            Show node properties:
+            <input
+              type="checkbox"
+              [(ngModel)]="showNodeLabels"
+              (ngModelChange)="showNodeLabelsChange.emit($event)"
+            />
+          </label>
+        </div>
+
+        <div class="p-2">
+          <label>
+            Show edge properties:
+            <input
+              type="checkbox"
+              [(ngModel)]="showEdgeLabels"
+              (ngModelChange)="showEdgeLabelsChange.emit($event)"
+            />
+          </label>
+        </div>
+
+        <div class="p-2">
+          <label>
+            Show duration:
+            <input
+              type="checkbox"
+              [(ngModel)]="showDurationLabels"
+              (ngModelChange)="showDurationLabelsChange.emit($event)"
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<p class="font-bold">Objects</p>
+<div class="flex flex-wrap overflow-auto h-20">
+  <mat-chip-option
+    *ngFor="let obj of objects; let index = index"
+    [style.background-color]="
+      obj[2] ? (obj[1] | valueFromMap: colorsMap) : '#c3c3c3'
+    "
+    class="m-1 px-1"
+    highlighted="false"
+    [selectable]="false"
+    (click)="onObjectChange(index)"
+    >{{ obj[0] }}</mat-chip-option
+  >
+</div>

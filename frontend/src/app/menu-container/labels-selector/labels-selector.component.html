@@ -1,0 +1,50 @@
+<p class="px-2 font-bold">Show labels</p>
+<div class="flex px-2">
+  <div *ngIf="mode === Mode.Single || mode === Mode.Swimlane">
+    <mat-checkbox
+      class="example-margin"
+      [(ngModel)]="showNodeLabels"
+      (ngModelChange)="showNodeLabelsChange.emit($event)"
+      >Node</mat-checkbox
+    >
+    <input
+      id="show-node-labels"
+      type="checkbox"
+      class="hidden"
+      [(ngModel)]="showNodeLabels"
+      (ngModelChange)="showNodeLabelsChange.emit($event)"
+    />
+  </div>
+
+  <div *ngIf="mode === Mode.Single || mode === Mode.Swimlane">
+    <mat-checkbox
+      class="example-margin"
+      [(ngModel)]="showEdgeLabels"
+      (ngModelChange)="showEdgeLabelsChange.emit($event)"
+      >Edge</mat-checkbox
+    >
+    <input
+      type="checkbox"
+      id="show-edge-labels"
+      class="hidden"
+      [(ngModel)]="showEdgeLabels"
+      (ngModelChange)="showEdgeLabelsChange.emit($event)"
+    />
+  </div>
+
+  <div>
+    <mat-checkbox
+      class="example-margin"
+      [(ngModel)]="showDurationLabels"
+      (ngModelChange)="showDurationLabelsChange.emit($event)"
+      >Duration</mat-checkbox
+    >
+    <input
+      type="checkbox"
+      id="show-duration-labels"
+      class="hidden"
+      [(ngModel)]="showDurationLabels"
+      (ngModelChange)="showDurationLabelsChange.emit($event)"
+    />
+  </div>
+</div>

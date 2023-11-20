@@ -1,0 +1,7 @@
+<p class="px-2 font-bold">Layout</p>
+<div class="flex px-2 p-1">
+  <mat-slide-toggle
+    (change)="layoutChange.emit(layout === 'elk' ? 'dagre' : 'elk')"
+    >{{ layout | uppercase }}</mat-slide-toggle
+  >
+</div>

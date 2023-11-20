@@ -1,0 +1,23 @@
+<div class="flex h-32 flex-col">
+  <button
+    mat-raised-button
+    color="primary"
+    class="w-56 p-4"
+    (click)="onModeChange()"
+  >
+    Mode: {{ mode }}
+  </button>
+
+  <mat-form-field *ngIf="mode === Mode.Swimlane" class="mt-2">
+    <mat-label>Swimlane type</mat-label>
+    <select
+      matNativeControl
+      (change)="onSwimlaneTypeChange($event)"
+      [ngModel]="swimlaneType"
+    >
+      <option *ngFor="let type of types; let index = index" [value]="type[0]">
+        {{ type[0] }}
+      </option>
+    </select>
+  </mat-form-field>
+</div>
